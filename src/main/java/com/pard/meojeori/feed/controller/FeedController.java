@@ -25,8 +25,8 @@ public class FeedController {
         return feedService.findById(id);
     }
 
-    @PostMapping("/{feedId}/upvote")
-    public void toggleUpvote(@PathVariable Long feedId, @RequestParam UUID userId) {
+    @PostMapping("/upvote")
+    public void toggleUpvote(@RequestParam Long feedId, @RequestParam UUID userId) {
         feedService.toggleUpvote(feedId, userId);
     }
 }
