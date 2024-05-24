@@ -74,5 +74,9 @@ public class FeedService {
                 .toList();
     }
 
-    public void deleteFeed(Long id){ feedRepo.deleteById(id); }
+    @Transactional
+    public void deleteFeed(Long id){
+        upvoteHistoryRepo.deleteByFeedId(id);
+        feedRepo.deleteById(id);
+    }
 }

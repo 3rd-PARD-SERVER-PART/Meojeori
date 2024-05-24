@@ -53,7 +53,7 @@ public class FeedController {
     }
 
     @DeleteMapping("/delete")
-    @Operation(summary = "해당 게시물 삭제", description = "해당 유저가 작성한 게시물을 삭제하는 것을 보야줌")
+    @Operation(summary = "해당 게시물 삭제", description = "해당 유저가 작성한 게시물을 삭제하는 것을 보여줌")
     public String deleteFeed(@RequestParam Long id){
         feedService.deleteFeed(id);
         return "삭제하셨습니다.";
