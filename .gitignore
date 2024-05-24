@@ -217,4 +217,4 @@ out/
 ### SECURE ###
 *.properties
 secret/
-
+src/main/resources/*.json
