@@ -14,7 +14,7 @@ public class FeedDto {
     @Setter
     public static class Create{
         private String title;
-        private Long like;
+        private Long upvote;
         private Long price;
         private String contents;
     }
@@ -26,7 +26,7 @@ public class FeedDto {
         private Long id;
         private User writer;
         private String title;
-        private Long like;
+        private Long upvote;
         private Long price;
         private String contents;
 
@@ -34,7 +34,7 @@ public class FeedDto {
             this.id = feed.getId();
             this.writer = feed.getWriter();
             this.title = feed.getTitle();
-            this.like = feed.getLike();
+            this.upvote = feed.getUpvote();
             this.price = feed.getPrice();
             this.contents = feed.getContents();
         }
