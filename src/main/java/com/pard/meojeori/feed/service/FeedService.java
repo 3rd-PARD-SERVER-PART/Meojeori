@@ -61,4 +61,10 @@ public class FeedService {
                 .map(FeedDto.Read::new)
                 .toList();
     }
+
+    public List<FeedDto.Read> rankPrice(){
+        return feedRepo.findAllByOrderByPriceAsc().stream()
+                .map(FeedDto.Read::new)
+                .toList();
+    }
 }
