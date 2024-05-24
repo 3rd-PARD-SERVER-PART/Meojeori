@@ -75,8 +75,28 @@ public class FeedService {
     }
 
     @Transactional
-    public void deleteFeed(Long id){
-        upvoteHistoryRepo.deleteByFeedId(id);
-        feedRepo.deleteById(id);
+    public void deleteFeed(Long feedId, UUID userId){
+        if(compareUserIdAndUserIdInFeedId(feedId, userId)) {
+            upvoteHistoryRepo.deleteByFeedId(feedId);
+            feedRepo.deleteById(feedId);
+        }
+    }
+
+    @Transactional
+    public void updateFeed(Long feedId, UUID userId, FeedDto.CreateFeed dto){
+        if(compareUserIdAndUserIdInFeedId(feedId, userId)){
+            Feed feed = feedRepo.findById(feedId).orElseThrow();
+            feed.setContents(dto.getContents());
+            feed.setTitle(dto.getTitle());
+            feed.prePersistAndUpdate();
+        }
+    }
+
+    private boolean compareUserIdAndUserIdInFeedId(Long feedId, UUID userId){
+        Optional<Feed> optionalFeed = feedRepo.findById(feedId);
+        if (optionalFeed.isPresent()) {
+            Feed feed = optionalFeed.get();
+            return feed.getWriter().getId().equals(userId);
+        } else return false;
     }
 }
