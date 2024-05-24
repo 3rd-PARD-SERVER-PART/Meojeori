@@ -48,6 +48,14 @@ public class Feed {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    public void incrementUpvote() {
+        this.upvote++;
+    }
+
+    public void decrementUpvote() {
+        this.upvote--;
+    }
+
     public static Feed toEntity(FeedDto.Create dto){
         return Feed.builder()
                 .upvote(dto.getUpvote())
