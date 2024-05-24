@@ -5,23 +5,41 @@ import com.pard.meojeori.feed.entity.Feed;
 import com.pard.meojeori.feed.service.FeedService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("/api/feed")
 public class FeedController {
     private final FeedService feedService;
 
+    @Autowired
+    public FeedController(FeedService feedService) {
+        this.feedService = feedService;
+    }
+
     @PostMapping("/make")
     @Operation(summary = "게시물 입력", description = "글 작성 기능 (카테고리 선정, 제목, 가격, 세부내용)")
-    public String createFeed(@RequestBody FeedDto.CreateFeed  dto, @RequestParam UUID userId){
-        feedService.createFeed(dto, userId);
+//    public String createFeed(@RequestBody FeedDto.CreateFeed  dto, @RequestParam UUID userId, @RequestParam MultipartFile image) throws IOException {
+//        feedService.createFeed(dto, userId, image);
+//        return "게시물 추가 되었습니다.";
+//    }
+    public String createFeed(
+            @ModelAttribute FeedDto.CreateNewFeed dto,
+            @RequestParam UUID userId,
+            @RequestParam MultipartFile image) throws IOException {
+        feedService.createFeed(dto, userId, image);
         return "게시물 추가 되었습니다.";
     }
+
+
+
     @GetMapping("/detail/{id}")
     @Operation(summary = "게시물 찾기", description = "글 세부 내용 확인하는 기능")
     public FeedDto.Read findById(@PathVariable("id") Long id) {

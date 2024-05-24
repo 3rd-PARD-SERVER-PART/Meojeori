@@ -50,6 +50,9 @@ public class Feed {
     @Column(name = "update_at")
     private LocalDateTime updateAt;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @PrePersist
     @PreUpdate
     public void prePersistAndUpdate() {
@@ -64,13 +67,24 @@ public class Feed {
         this.upvote--;
     }
 
-    public static Feed toEntity(FeedDto.CreateFeed dto, User writer){
+    public static Feed toEntity(FeedDto.CreateNewFeed dto, User writer, String imageUrl){
+        return Feed.builder()
+                .writer(writer)
+                .contents(dto.getContents())
+                .price(dto.getPrice())
+                .title(dto.getTitle())
+                .imageUrl(imageUrl)
+                .build();
+    }
+
+    public static Feed toEntity(FeedDto.CreateFeed dto, User writer, String imageUrl){
         return Feed.builder()
                 .upvote(dto.getUpvote())
                 .writer(writer)
                 .contents(dto.getContents())
                 .price(dto.getPrice())
                 .title(dto.getTitle())
+                .imageUrl(imageUrl)
                 .build();
     }
 }

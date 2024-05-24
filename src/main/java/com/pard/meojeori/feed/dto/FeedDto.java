@@ -12,6 +12,13 @@ import java.time.LocalDateTime;
 public class FeedDto {
     @Getter
     @Setter
+    public static class CreateNewFeed{
+        private String title;
+        private Long price;
+        private String contents;
+    }
+    @Getter
+    @Setter
     public static class CreateFeed{
         private User writer;
         private String title;

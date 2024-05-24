@@ -1,5 +1,9 @@
 package com.pard.meojeori.feed.service;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.cloud.FirestoreClient;
 import com.pard.meojeori.feed.dto.FeedDto;
 import com.pard.meojeori.feed.entity.Feed;
 import com.pard.meojeori.feed.entity.UpvoteHistory;
@@ -9,9 +13,12 @@ import com.pard.meojeori.user.repo.UserRepo;
 import com.pard.meojeori.feed.repo.UpvoteHistoryRepo;
 import com.pard.meojeori.user.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,11 +28,27 @@ import java.util.UUID;
 public class FeedService {
     private final FeedRepo feedRepo;
     private final UserRepo userRepo;
-
-    public void createFeed(FeedDto.CreateFeed dto, UUID userId){ feedRepo.save(Feed.toEntity(
-            dto, userRepo.findById(userId).orElseThrow())); }
     private final UpvoteHistoryRepo upvoteHistoryRepo;
+    private final FileUploadService fileUploadService;
 
+
+    public void createFeed(FeedDto.CreateNewFeed dto, UUID userId, MultipartFile image) throws IOException {
+//        feedRepo.save(Feed.toEntity(
+//            dto, userRepo.findById(userId).orElseThrow()));
+        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        String imageUrl = fileUploadService.uploadFile(image);
+
+        Feed feed = Feed.toEntity(dto, user, imageUrl);
+
+        feedRepo.save(feed);
+    }
+
+//    public String saveFeed(Feed feed) {
+//        Firestore dbFirestore = FirestoreClient.getFirestore();
+//        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("feeds").document(feed.getId().toString()).set(feed);
+//        return "Document ID: " + feed.getId();
+//    }
 
     public FeedDto.Read findById(Long id){
         return new FeedDto.Read(feedRepo.findById(id).orElseThrow());
