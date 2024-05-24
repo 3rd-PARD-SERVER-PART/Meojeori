@@ -1,11 +1,13 @@
 package com.pard.meojeori.feed.controller;
 
 import com.pard.meojeori.feed.dto.FeedDto;
+import com.pard.meojeori.feed.entity.Feed;
 import com.pard.meojeori.feed.service.FeedService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +30,10 @@ public class FeedController {
     @PostMapping("/upvote")
     public void toggleUpvote(@RequestParam Long feedId, @RequestParam UUID userId) {
         feedService.toggleUpvote(feedId, userId);
+    }
+
+    @GetMapping("/rank/upvote")
+    public List<FeedDto.Read> rankUpvote(){
+        return feedService.rankUpvote();
     }
 }
