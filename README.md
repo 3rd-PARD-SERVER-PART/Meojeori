@@ -22,12 +22,12 @@
 ### 설치
 '청춘은 돈이 부족해도 낭만을 좇는것’ 이라는 정의를 실현할 수 있도록 낭만의 경험을 공유하는 동기부여 서비스
 
-1. 저장소를 클론
+1. 저장소 클론
     ```bash
     git clone https://github.com/3rd-PARD-SERVER-PART/Meojeori.git
     ```   
 
-2. Properties 설정하기.
+2. Properties 설정
 
    - application-mysql.properties
    - application-oauth.properties
