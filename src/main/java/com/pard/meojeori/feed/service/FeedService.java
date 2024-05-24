@@ -4,9 +4,10 @@ import com.pard.meojeori.feed.dto.FeedDto;
 import com.pard.meojeori.feed.entity.Feed;
 import com.pard.meojeori.feed.entity.UpvoteHistory;
 import com.pard.meojeori.feed.repo.FeedRepo;
+
+import com.pard.meojeori.user.repo.UserRepo;
 import com.pard.meojeori.feed.repo.UpvoteHistoryRepo;
 import com.pard.meojeori.user.entity.User;
-import com.pard.meojeori.user.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +20,11 @@ import java.util.UUID;
 public class FeedService {
     private final FeedRepo feedRepo;
     private final UserRepo userRepo;
+
+    public void createFeed(FeedDto.CreateFeed dto, UUID userId){ feedRepo.save(Feed.toEntity(
+            dto, userRepo.findById(userId).orElseThrow())); }
     private final UpvoteHistoryRepo upvoteHistoryRepo;
 
-    public void createFeed(FeedDto.Create dto){ feedRepo.save(Feed.toEntity(dto)); }
 
     public FeedDto.Read findById(Long id){
         return new FeedDto.Read(feedRepo.findById(id).orElseThrow());

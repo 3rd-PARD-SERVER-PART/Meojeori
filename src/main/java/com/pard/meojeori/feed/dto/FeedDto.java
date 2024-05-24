@@ -6,15 +6,14 @@ import com.pard.meojeori.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 public class FeedDto {
     @Getter
     @Setter
-    public static class Create{
+    public static class CreateFeed{
+        private User writer;
         private String title;
         private Long upvote;
         private Long price;

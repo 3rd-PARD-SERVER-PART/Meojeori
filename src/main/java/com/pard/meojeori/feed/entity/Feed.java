@@ -56,9 +56,10 @@ public class Feed {
         this.upvote--;
     }
 
-    public static Feed toEntity(FeedDto.Create dto){
+    public static Feed toEntity(FeedDto.CreateFeed dto, User writer){
         return Feed.builder()
                 .upvote(dto.getUpvote())
+                .writer(writer)
                 .contents(dto.getContents())
                 .price(dto.getPrice())
                 .title(dto.getTitle())
