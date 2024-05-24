@@ -73,4 +73,6 @@ public class FeedService {
                 .map(FeedDto.Read::new)
                 .toList();
     }
+
+    public void deleteFeed(Long id){ feedRepo.deleteById(id); }
 }
