@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,5 +29,10 @@ public class FeedController {
     @PostMapping("/upvote")
     public void toggleUpvote(@RequestParam Long feedId, @RequestParam UUID userId) {
         feedService.toggleUpvote(feedId, userId);
+    }
+
+    @GetMapping("/rank/latest")
+    public List<FeedDto.Read> readsLatest(){
+        return feedService.readsLatest();
     }
 }
