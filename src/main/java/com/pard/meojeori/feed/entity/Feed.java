@@ -6,12 +6,8 @@ import com.pard.meojeori.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UuidGenerator;
-import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 @Entity
@@ -31,6 +27,7 @@ public class Feed {
     @JoinColumn(name = "writer_id", nullable = false)
     private User writer;
 
+    @Setter
     @Column(name = "title",  nullable = false)
     private String title;
 
@@ -41,12 +38,23 @@ public class Feed {
     private Long price;
 
     @Lob
+    @Setter
     @Column(name = "contents", nullable = false, columnDefinition = "TEXT")
     private String contents;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @PrePersist
+    @PreUpdate
+    public void prePersistAndUpdate() {
+        this.updateAt = LocalDateTime.now();
+    }
 
     public void incrementUpvote() {
         this.upvote++;

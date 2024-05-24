@@ -54,8 +54,15 @@ public class FeedController {
 
     @DeleteMapping("/delete")
     @Operation(summary = "해당 게시물 삭제", description = "해당 유저가 작성한 게시물을 삭제하는 것을 보여줌")
-    public String deleteFeed(@RequestParam Long id){
-        feedService.deleteFeed(id);
+    public String deleteFeed(@RequestParam Long feedId, @RequestParam UUID userId){
+        feedService.deleteFeed(feedId, userId);
         return "삭제하셨습니다.";
+    }
+
+    @PatchMapping("/update")
+    @Operation(summary = "게시물 글과 제못 업데이트!", description = "해당 유저가 작성한 게시물을 고칠 때 사용하도록 한다.")
+    public String updateFeed(@RequestBody FeedDto.CreateFeed  dto, @RequestParam UUID userId, @RequestParam Long feedId){
+        feedService.updateFeed(feedId, userId, dto);
+        return "수정되었습니다.";
     }
 }
