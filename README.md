@@ -8,6 +8,7 @@
     - [설치](#설치)
 - [API](#api)
 - [License](#license)
+- [Commit Message](#commit-message)
 
 ## 소개
 프로젝트에 대한 간단한 설명을 작성하세요. 이 프로젝트가 무엇인지, 어떤 문제를 해결하는지, 그리고 주요 기능에 대해 설명하세요.
@@ -31,8 +32,32 @@
    - application-mysql.properties
    - application-oauth.properties
 ## API
-
+![apies.png](assets/apies.png)
 ## License
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+
+## Commit Message
+By default, create a commit using the icon in https://gitmoji.dev/.
+
+```
+:sparkles: Add login pages
+:bug: Fix CORS Error
+```
+
+🚀 - Deploy stuff `:rocket:`
+
+⚡ - Improve performance `:zap:`
+
+🔥 - Remove code or files `:fire:`
+
+🐛 - Fix a bug `:bug:`
+
+✨ - Introduce new features `:sparkles:`
+
+✅ - Add, Update `:white_check_mark:`
+
+📝 - Add or update documentation `:memo:`    
+
+:see_no_evil: - Add or update ignore `:see_no_evil:`
