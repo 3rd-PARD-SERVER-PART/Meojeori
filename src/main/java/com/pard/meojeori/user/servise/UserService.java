@@ -7,18 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepo userRepo;
-
-
-    public void createUser(UserDTO.Create dto){
-        userRepo.save(User.toEntity(dto));
-    }
 
     public UserDTO.Read readById(UUID userId){
         User user = userRepo.findById(userId).orElseThrow();

@@ -15,20 +15,13 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("")
-    @Operation(summary = "유저 등록",description = "이름과 이메일로 유저 생성")
-    public String createUser(@RequestBody UserDTO.Create dto){
-        userService.createUser(dto);
-        return "유저 추가됨";
-    }
-
-    @GetMapping("")
+    @GetMapping("/find/all")
     @Operation(summary = "모든 유저 리스팅",description = "DB 내 모든 유저 리스팅")
     public List<UserDTO.Read> readAll(){
         return userService.readAll();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/find/{userId}")
     @Operation(summary = "유저 검색",description = "ID를 통해 DB 내 해당 유저 검색")
     public UserDTO.Read readById(@PathVariable UUID userId){ return userService.readById(userId); }
 }
