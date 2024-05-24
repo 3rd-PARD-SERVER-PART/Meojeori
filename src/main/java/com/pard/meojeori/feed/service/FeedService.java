@@ -12,4 +12,8 @@ public class FeedService {
     private final FeedRepo feedRepo;
 
     public void createFeed(FeedDto.Create dto){ feedRepo.save(Feed.toEntity(dto)); }
+
+    public FeedDto.Read findById(Long id){
+        return new FeedDto.Read(feedRepo.findById(id).orElseThrow());
+    }
 }
