@@ -30,8 +30,8 @@ public class Feed {
     @Column(name = "title",  nullable = false)
     private String title;
 
-    @Column(name = "like", nullable = false)
-    private Long like;
+    @Column(name = "upvote", nullable = false)
+    private Long upvote;
 
     @Column(name = "price",nullable = false)
     private Long price;
