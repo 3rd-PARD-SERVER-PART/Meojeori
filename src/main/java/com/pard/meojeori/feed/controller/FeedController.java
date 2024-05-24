@@ -36,4 +36,9 @@ public class FeedController {
     public List<FeedDto.Read> rankUpvote(){
         return feedService.rankUpvote();
     }
+
+    @GetMapping("/rank/price")
+    public List<FeedDto.Read> rankPrice(){
+        return feedService.rankPrice();
+    }
 }
