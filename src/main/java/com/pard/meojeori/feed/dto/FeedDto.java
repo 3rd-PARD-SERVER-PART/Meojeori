@@ -6,6 +6,8 @@ import com.pard.meojeori.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -29,6 +31,7 @@ public class FeedDto {
         private Long upvote;
         private Long price;
         private String contents;
+        private LocalDateTime createdAt;
 
         public Read(Feed feed){
             this.id = feed.getId();
@@ -37,6 +40,7 @@ public class FeedDto {
             this.upvote = feed.getUpvote();
             this.price = feed.getPrice();
             this.contents = feed.getContents();
+            this.createdAt = feed.getCreatedAt();
         }
     }
 }

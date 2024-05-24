@@ -50,7 +50,7 @@ public class Feed {
 
     public static Feed toEntity(FeedDto.Create dto){
         return Feed.builder()
-                .like(dto.getLike())
+                .upvote(dto.getUpvote())
                 .contents(dto.getContents())
                 .price(dto.getPrice())
                 .title(dto.getTitle())
