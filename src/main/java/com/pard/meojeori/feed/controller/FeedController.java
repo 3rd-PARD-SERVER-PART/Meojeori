@@ -41,4 +41,9 @@ public class FeedController {
     public List<FeedDto.Read> rankPrice(){
         return feedService.rankPrice();
     }
+
+    @GetMapping("/rank/latest")
+    public List<FeedDto.Read> rankLatest(){
+        return feedService.rankLatest();
+    }
 }

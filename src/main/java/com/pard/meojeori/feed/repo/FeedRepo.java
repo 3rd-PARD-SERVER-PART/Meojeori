@@ -11,4 +11,5 @@ import java.util.List;
 public interface FeedRepo extends JpaRepository<Feed, Long> {
     List<Feed> findAllByOrderByUpvoteDesc();
     List<Feed> findAllByOrderByPriceAsc();
+    List<Feed> findAllByOrderByIdDesc();
 }
