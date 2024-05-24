@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface UpvoteHistoryRepo extends JpaRepository<UpvoteHistory,Long> {
     Optional<UpvoteHistory> findByFeedAndUser(Feed feed, User user);
+    void deleteByFeedId(Long feedId);
 }
