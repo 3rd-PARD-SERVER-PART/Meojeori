@@ -18,8 +18,8 @@ public class FeedController {
 
     @PostMapping("/make")
     @Operation(summary = "게시물 입력", description = "글 작성 기능 (카테고리 선정, 제목, 가격, 세부내용)")
-    public String createFeed(@RequestBody FeedDto.CreateFeed  dto, @RequestParam UUID userId){
-        feedService.createFeed(dto, userId);
+    public String createFeed(@RequestBody FeedDto.CreateNewFeed  dto){
+        feedService.createFeed(dto);
         return "게시물 추가 되었습니다.";
     }
     @GetMapping("/detail/{id}")

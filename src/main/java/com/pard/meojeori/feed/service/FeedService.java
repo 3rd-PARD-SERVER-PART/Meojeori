@@ -22,8 +22,15 @@ public class FeedService {
     private final FeedRepo feedRepo;
     private final UserRepo userRepo;
 
-    public void createFeed(FeedDto.CreateFeed dto, UUID userId){ feedRepo.save(Feed.toEntity(
-            dto, userRepo.findById(userId).orElseThrow())); }
+    public void createFeed(FeedDto.CreateNewFeed dto){
+        FeedDto.CreateFeed createFeed = new FeedDto.CreateFeed();
+        createFeed.setTitle(dto.getTitle());
+        createFeed.setPrice(dto.getPrice());
+        createFeed.setContents(dto.getContents());
+//        createFeed.setWriter(userRepo.findById(dto.getUserId()).orElseThrow());
+        createFeed.setUpvote(Long.decode("0"));
+        feedRepo.save(Feed.toEntity(
+                createFeed, userRepo.findById(dto.getUserId()).orElseThrow())); }
     private final UpvoteHistoryRepo upvoteHistoryRepo;
 
 

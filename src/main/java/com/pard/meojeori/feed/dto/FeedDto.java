@@ -7,9 +7,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 public class FeedDto {
+    @Getter
+    @Setter
+    public static class CreateNewFeed{
+        private UUID userId;
+        private String title;
+        private Long price;
+        private String contents;
+    }
+
     @Getter
     @Setter
     public static class CreateFeed{
